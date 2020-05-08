@@ -17,19 +17,8 @@ class npm (
 		}
 
 		if ( $config[npm] and $config[npm][paths]) {
-			install_npm { $config[npm][paths]: }
+			chassis::install_npm { $config[npm][paths]: }
 		}
 	}
 }
 
-
-# Puppet 3.8 doesn't have the .each function and we need an alternative.
-define install_npm {
-	exec { "Installing npm ${name}":
-		path      => [ '/bin/', '/sbin/', '/usr/bin/', '/usr/sbin/' ],
-		cwd       => $name,
-		command   => 'npm install',
-		require   => [ Exec['install npm'] ],
-		logoutput => true,
-	}
-}
