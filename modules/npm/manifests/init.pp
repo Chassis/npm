@@ -17,7 +17,7 @@ class npm (
 		}
 
 		if ( $config[npm] and $config[npm][paths]) {
-			chassis::install_npm { $config[npm][paths]: }
+			npm::install_npm { $config[npm][paths]: }
 		}
 	}
 }
